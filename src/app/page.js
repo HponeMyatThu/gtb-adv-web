@@ -271,7 +271,7 @@ const App = () => {
         </section>
 
         {/* Section 5: Get Started Today! (Call to Action) */}
-        <section id={sections[4].id} className="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-indigo-700 text-white text-center">
+        <section id={sections[4].id} className="py-16 md:py-24 bg-gradient-to-br bg-blue-700 from-blue-600 to-indigo-700 text-white text-center">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
               {sections[4].title}
