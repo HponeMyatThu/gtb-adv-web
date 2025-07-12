@@ -1,103 +1,202 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React from 'react';
+
+// Main App component
+const App = () => {
+  // Array of section data, mapping to the original 5 pages
+  const sections = [
+    {
+      id: "frustration",
+      title: "Tired of fumbling for cash or cards?",
+      body: "Slow transactions. Bulky wallets. The hassle of change. There's a simpler way to pay.",
+      image: "https://placehold.co/600x400/FEE2E2/EF4444?text=Frustrated+User",
+      alt: "Person at checkout looking frustrated while searching for cash or cards."
+    },
+    {
+      id: "solution",
+      title: "Hello, Easy Pay!",
+      body: "Introducing [Your Bank Name] Mobile Pay – your wallet, now on your phone. Fast, secure, and always at your fingertips.",
+      image: "https://placehold.co/600x400/DBEAFE/3B82F6?text=Smartphone+with+App",
+      alt: "Sleek smartphone displaying a bank app logo on its screen."
+    },
+    {
+      id: "convenience",
+      title: "Tap, Pay, Go!",
+      body: "Imagine breezing through checkouts. No more waiting. Just a quick tap from your smartphone to complete your purchases. Payments made simple.",
+      image: "https://placehold.co/600x400/D1FAE5/10B981?text=Tap+to+Pay",
+      alt: "A hand holding a smartphone near a payment terminal, indicating a successful mobile payment."
+    },
+    {
+      id: "security",
+      title: "Your Money, Safer Than Ever.",
+      body: "With [Your Bank Name] Mobile Pay, every transaction is protected by advanced security features and encryption. Pay confidently, anywhere you see the mobile pay symbol.",
+      image: "https://placehold.co/600x400/E0E7FF/6366F1?text=Secure+Payment",
+      alt: "A shield or lock icon overlaid on a phone screen, symbolizing security."
+    },
+    {
+      id: "get-started",
+      title: "Ready for Smarter Payments?",
+      body: "Download the [Your Bank Name] app today or visit [Your Bank's Website/Branch] to set up your mobile pay and transform how you spend. Experience the future of banking!",
+      image: "https://placehold.co/600x400/FFFBEB/F59E0B?text=Download+App",
+      alt: "A clear image of a bank's mobile app icon or a smartphone showing the app's setup screen."
+    },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gray-50 font-inter text-gray-800">
+      {/* Tailwind CSS and Font Import */}
+      <script src="https://cdn.tailwindcss.com"></script>
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+          body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          html {
+            scroll-behavior: smooth;
+          }
+        `}
+      </style>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Header Section */}
+      <header className="bg-white shadow-md py-4 px-6 md:px-12 flex justify-between items-center fixed w-full top-0 z-20 rounded-b-xl">
+        <div className="flex items-center space-x-2">
+          {/* Bank Logo Placeholder */}
+          <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd"></path>
+          </svg>
+          <span className="text-2xl font-bold text-gray-800">[Your Bank Name]</span>
         </div>
+        <nav>
+          <ul className="flex space-x-6">
+            <li><a href="#frustration" className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Home</a></li>
+            <li><a href="#get-started" className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200">Get Started</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      {/* Main Content Sections */}
+      <main className="pt-20"> {/* Padding top to account for fixed header */}
+
+        {/* Section 1: The Frustration (Hero Section) */}
+        <section id={sections[0].id} className="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-indigo-100 text-center flex items-center justify-center min-h-[calc(100vh-80px)]">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight animate-fade-in-down">
+              {sections[0].title}
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-700 mb-10 leading-relaxed animate-fade-in-up">
+              {sections[0].body}
+            </p>
+            <div className="flex justify-center animate-zoom-in">
+              <img
+                src={sections[0].image}
+                alt={sections[0].alt}
+                className="rounded-xl shadow-xl max-w-full h-auto border-4 border-white transform transition-transform duration-500 hover:scale-105"
+                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x400/CCCCCC/333333?text=Image+Not+Found"; }}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Section 2: The Solution Arrives */}
+        <section id={sections[1].id} className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-4 max-w-4xl flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2 text-center md:text-left">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4 leading-tight">
+                {sections[1].title}
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {sections[1].body}
+              </p>
+            </div>
+            <div className="md:w-1/2 flex justify-center">
+              <img
+                src={sections[1].image}
+                alt={sections[1].alt}
+                className="rounded-xl shadow-lg max-w-full h-auto transform transition-transform duration-500 hover:scale-105"
+                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x400/CCCCCC/333333?text=Image+Not+Found"; }}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Section 3: Speed & Convenience */}
+        <section id={sections[2].id} className="py-16 md:py-20 bg-gray-50">
+          <div className="container mx-auto px-4 max-w-4xl flex flex-col-reverse md:flex-row items-center gap-8">
+            <div className="md:w-1/2 flex justify-center">
+              <img
+                src={sections[2].image}
+                alt={sections[2].alt}
+                className="rounded-xl shadow-lg max-w-full h-auto transform transition-transform duration-500 hover:scale-105"
+                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x400/CCCCCC/333333?text=Image+Not+Found"; }}
+              />
+            </div>
+            <div className="md:w-1/2 text-center md:text-left">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4 leading-tight">
+                {sections[2].title}
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {sections[2].body}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 4: Secure & Smart */}
+        <section id={sections[3].id} className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-4 max-w-4xl flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2 text-center md:text-left">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4 leading-tight">
+                {sections[3].title}
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {sections[3].body}
+              </p>
+            </div>
+            <div className="md:w-1/2 flex justify-center">
+              <img
+                src={sections[3].image}
+                alt={sections[3].alt}
+                className="rounded-xl shadow-lg max-w-full h-auto transform transition-transform duration-500 hover:scale-105"
+                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x400/CCCCCC/333333?text=Image+Not+Found"; }}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5: Get Started Today! (Call to Action) */}
+        <section id={sections[4].id} className="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-indigo-700 text-white text-center">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+              {sections[4].title}
+            </h2>
+            <p className="text-xl md:text-2xl mb-10 leading-relaxed">
+              {sections[4].body}
+            </p>
+            <a
+              href="#" // Placeholder for actual download/website link
+              className="inline-block bg-white text-blue-700 font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
+            >
+              Download the App Now!
+            </a>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer Section */}
+      <footer className="bg-gray-900 text-gray-400 py-10 text-center">
+        <div className="container mx-auto px-4">
+          <p className="mb-2">&copy; {new Date().getFullYear()} [Your Bank Name]. All rights reserved.</p>
+          <p>123 Bank Street, City, Country</p>
+          <p>Contact: <a href="mailto:info@yourbank.com" className="hover:underline">info@yourbank.com</a></p>
+        </div>
       </footer>
     </div>
   );
-}
+};
+
+export default App;
