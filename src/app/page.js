@@ -1,6 +1,6 @@
-'use client';
+'use client'; // This directive marks the component as a Client Component
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Main App component
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
     {
       id: "solution",
       title: "Hello, Easy Pay!",
-      body: "Introducing [Your Bank Name] Mobile Pay – your wallet, now on your phone. Fast, secure, and always at your fingertips.",
+      body: "Introducing GTB Bank Mobile Pay – your wallet, now on your phone. Fast, secure, and always at your fingertips.",
       image: "https://placehold.co/600x400/DBEAFE/3B82F6?text=Smartphone+with+App",
       alt: "Sleek smartphone displaying a bank app logo on its screen."
     },
@@ -30,18 +30,120 @@ const App = () => {
     {
       id: "security",
       title: "Your Money, Safer Than Ever.",
-      body: "With [Your Bank Name] Mobile Pay, every transaction is protected by advanced security features and encryption. Pay confidently, anywhere you see the mobile pay symbol.",
+      body: "With GTB Bank Mobile Pay, every transaction is protected by advanced security features and encryption. Pay confidently, anywhere you see the mobile pay symbol.",
       image: "https://placehold.co/600x400/E0E7FF/6366F1?text=Secure+Payment",
       alt: "A shield or lock icon overlaid on a phone screen, symbolizing security."
     },
     {
       id: "get-started",
       title: "Ready for Smarter Payments?",
-      body: "Download the [Your Bank Name] app today or visit [Your Bank's Website/Branch] to set up your mobile pay and transform how you spend. Experience the future of banking!",
+      body: "Download the GTB Bank app today or visit GTB Bank's Website/Branch to set up your mobile pay and transform how you spend. Experience the future of banking!",
       image: "https://placehold.co/600x400/FFFBEB/F59E0B?text=Download+App",
       alt: "A clear image of a bank's mobile app icon or a smartphone showing the app's setup screen."
     },
   ];
+
+  // SEO Data for the page
+  const seoData = {
+    title: "GTB Bank Mobile Pay - Fast, Secure, Easy Payments",
+    description: "Experience the future of banking with GTB Bank Mobile Pay. Tap, pay, and go with secure and convenient smartphone payments.",
+    keywords: "mobile pay, bank, digital wallet, secure payments, easy pay, smartphone banking, GTB Bank",
+    url: "https://www.yourbank.com/mobile-pay-ad", // Replace with your actual page URL
+    ogTitle: "GTB Bank Mobile Pay",
+    ogDescription: "Tap, pay, and go with GTB Bank Mobile Pay – your secure digital wallet.",
+    ogImage: "https://placehold.co/1200x630/DBEAFE/3B82F6?text=GTB+Bank+Mobile+Pay+Ad", // A large image for social sharing
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterSite: "@GTBBankTwitter", // Replace with your bank's Twitter handle
+    twitterCreator: "@GTBBankTwitter",
+    twitterTitle: "GTB Bank Mobile Pay",
+    twitterDescription: "Experience fast, secure, and easy payments with GTB Bank Mobile Pay.",
+    twitterImage: "https://placehold.co/1200x675/DBEAFE/3B82F6?text=GTB+Bank+Mobile+Pay+Ad", // Image for Twitter card
+  };
+
+  useEffect(() => {
+    // Store references to elements added to head for cleanup
+    const addedElements = [];
+
+    // Set document title
+    const titleElement = document.createElement('title');
+    titleElement.textContent = seoData.title;
+    document.head.appendChild(titleElement);
+    addedElements.push(titleElement);
+
+    // Add meta tags
+    const metaTags = [
+      { name: "description", content: seoData.description },
+      { name: "keywords", content: seoData.keywords },
+      { property: "og:title", content: seoData.ogTitle },
+      { property: "og:description", content: seoData.ogDescription },
+      { property: "og:image", content: seoData.ogImage },
+      { property: "og:url", content: seoData.url },
+      { property: "og:type", content: seoData.ogType },
+      { name: "twitter:card", content: seoData.twitterCard },
+      { name: "twitter:site", content: seoData.twitterSite },
+      { name: "twitter:creator", content: seoData.twitterCreator },
+      { name: "twitter:title", content: seoData.twitterTitle },
+      { name: "twitter:description", content: seoData.twitterDescription },
+      { name: "twitter:image", content: seoData.twitterImage },
+    ];
+
+    metaTags.forEach(tagData => {
+      const meta = document.createElement('meta');
+      for (const key in tagData) {
+        meta.setAttribute(key, tagData[key]);
+      }
+      document.head.appendChild(meta);
+      addedElements.push(meta);
+    });
+
+    // Add canonical link
+    const canonicalLink = document.createElement('link');
+    canonicalLink.rel = 'canonical';
+    canonicalLink.href = seoData.url;
+    document.head.appendChild(canonicalLink);
+    addedElements.push(canonicalLink);
+
+    // Add JSON-LD for structured data
+    const schemaScript = document.createElement('script');
+    schemaScript.type = 'application/ld+json';
+    schemaScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "GTB Bank", // Replaced with GTB Bank
+          "url": seoData.url,
+          "logo": "https://placehold.co/200x200/FFFFFF/000000?text=GTB+Bank+Logo", // Replaced with GTB Bank Logo
+          "sameAs": [
+            "https://www.facebook.com/yourbank", // Replace with your bank's social media links
+            "https://twitter.com/yourbank",
+            "https://www.linkedin.com/company/yourbank"
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": seoData.title,
+          "description": seoData.description,
+          "url": seoData.url,
+          "publisher": {
+            "@id": seoData.url + "#organization" // Reference the Organization
+          }
+        }
+      ]
+    });
+    document.head.appendChild(schemaScript);
+    addedElements.push(schemaScript);
+
+    // Cleanup function: remove added elements when component unmounts
+    return () => {
+      addedElements.forEach(el => {
+        if (el.parentNode) { // Check if element still has a parent before removing
+          el.parentNode.removeChild(el);
+        }
+      });
+    };
+  }, [seoData]); // Re-run effect if seoData changes (though it's static here)
 
   return (
     <div className="min-h-screen bg-gray-50 font-inter text-gray-800">
@@ -69,7 +171,7 @@ const App = () => {
           <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd"></path>
           </svg>
-          <span className="text-2xl font-bold text-gray-800">[Your Bank Name]</span>
+          <span className="text-2xl font-bold text-gray-800">GTB Bank</span>
         </div>
         <nav>
           <ul className="flex space-x-6">
@@ -190,7 +292,7 @@ const App = () => {
       {/* Footer Section */}
       <footer className="bg-gray-900 text-gray-400 py-10 text-center">
         <div className="container mx-auto px-4">
-          <p className="mb-2">&copy; {new Date().getFullYear()} [Your Bank Name]. All rights reserved.</p>
+          <p className="mb-2">&copy; {new Date().getFullYear()} GTB Bank. All rights reserved.</p>
           <p>123 Bank Street, City, Country</p>
           <p>Contact: <a href="mailto:info@yourbank.com" className="hover:underline">info@yourbank.com</a></p>
         </div>
